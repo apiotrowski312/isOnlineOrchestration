@@ -1,0 +1,51 @@
+version: "3.7"
+
+services:
+  users-db:
+    image: mysql:latest
+    env_file: ../users-api/.env
+    volumes:
+      - users_db:/var/lib/mysql/
+      - ../users-api/sql_init/:/docker-entrypoint-initdb.d/
+
+  users:
+    build:
+      context: ../users-api
+      dockerfile: ../orchestration/Dockerfiles/Dockerfile.golang
+    volumes:
+      - ../users-api:/src
+    env_file: ../users-api/.env
+    ports:
+      - 8080:8080
+    depends_on:
+      - users-db
+
+  oauth-cassandra:
+    image: cassandra:3.11.5
+    env_file: ../oauth-api/.env
+    volumes:
+      - oauth_cassandra:/var/lib/cassandra
+    depends_on:
+      - oauth-cassandra-load-keyspace
+
+  oauth-cassandra-load-keyspace:
+    image: cassandra:3.11.5
+    volumes:
+      - ../oauth-api/cassandra/schema.cql:/schema.cql 
+    command: /bin/bash -c "sleep 30 && echo loading cassandra keyspace && cqlsh oauth-cassandra -f /schema.cql"
+
+  oauth:
+    build:
+      context: ../oauth-api
+      dockerfile: ../orchestration/Dockerfiles/Dockerfile.golang1
+    env_file: ../oauth-api/.env
+    volumes:
+      - ../oauth-api:/src
+    ports:
+      - 8081:8081
+    depends_on:
+      - oauth-cassandra
+
+volumes:
+  users_db:
+  oauth_cassandra:
