@@ -37,7 +37,7 @@ services:
   oauth:
     build:
       context: ../oauth-api
-      dockerfile: ../orchestration/Dockerfiles/Dockerfile.golang1
+      dockerfile: ../orchestration/Dockerfiles/Dockerfile.golang
     env_file: ../oauth-api/.env
     volumes:
       - ../oauth-api:/src
@@ -46,6 +46,26 @@ services:
     depends_on:
       - oauth-cassandra
 
+  sites-db:
+    image: postgres:12.1-alpine
+    env_file: ../sites-api/.env
+    volumes:
+      - sites_db:/var/lib/postgresql/data
+      - ../sites-api/sql/init.sql:/docker-entrypoint-initdb.d/10-init.sql
+
+  sites:
+    build:
+      context: ../sites-api
+      dockerfile: ../orchestration/Dockerfiles/Dockerfile.golang
+    volumes:
+      - ../sites-api:/src
+    env_file: ../sites-api/.env
+    ports:
+      - 8082:8082
+    depends_on:
+      - sites-db
+
 volumes:
   users_db:
   oauth_cassandra:
+  sites_db:
