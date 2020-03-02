@@ -30,6 +30,6 @@ To run all services you can use provided docker-compose file or simply run `make
 
 :exclamation: **Important note** :exclamation:
 
-Right now there is issiue with running dbs and svc at the same time, I will fix it in future if I come back to this project
+Right now there is an issiue with running dbs and svc at the same time, I will fix it in future if I come back to this project
 
 ---
