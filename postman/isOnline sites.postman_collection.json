@@ -1,0 +1,583 @@
+{
+	"info": {
+		"_postman_id": "dbc39b34-5035-48c7-9fbf-d28ad9ea39f2",
+		"name": "isOnline sites",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "426876d6-d27c-4bfa-9dde-680163d7a776",
+						"exec": [
+							"var id = pm.response.json().id;",
+							"",
+							"pm.environment.set(\"user_id\", id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"first_name\": \"{{username}}\",\n\t\"last_name\": \"surname\",\n\t\"email\": \"{{email}}\",\n\t\"password\": \"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{user-api}}/users",
+					"host": [
+						"{{user-api}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/{{user_id}}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"first_name\": \"{{username}}\",\n\t\"last_name\": \"surname\",\n\t\"email\": \"{{email}}\",\n\t\"password\": \"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{user-api}}/users/{{user_id}}",
+					"host": [
+						"{{user-api}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/{{user_id}}",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{user-api}}/users/{{user_id}}",
+					"host": [
+						"{{user-api}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/{{user_id}}",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"first_name\": \"{{username}}\",\n\t\"email\": \"{{email}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{user-api}}/users/{{user_id}}",
+					"host": [
+						"{{user-api}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/{{user_id}}",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"first_name\": \"name\",\n\t\"last_name\": \"surname\",\n\t\"email\": \"test@wp.pl\",\n\t\"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{user-api}}/users/{{user_id}}",
+					"host": [
+						"{{user-api}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/1?X-Public=true",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Public",
+						"value": "true",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{user-api}}/users/{{user_id}}?X-Public=true",
+					"host": [
+						"{{user-api}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}"
+					],
+					"query": [
+						{
+							"key": "X-Public",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/internal/users/search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{user-api}}/internal/users/search?status=active",
+					"host": [
+						"{{user-api}}"
+					],
+					"path": [
+						"internal",
+						"users",
+						"search"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "active"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"{{email}}\",\n\t\"password\": \"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{user-api}}/users/login",
+					"host": [
+						"{{user-api}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/oauth/access_token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fb349770-0180-4c4b-b9b9-326d70bb98a5",
+						"exec": [
+							"var token = pm.response.json().access_token;",
+							"",
+							"pm.environment.set(\"token\", token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"grant_type\": \"password\",\n    \"email\": \"{{email}}\",\n\t\"password\": \"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{oauth-api}}/oauth/access_token",
+					"host": [
+						"{{oauth-api}}"
+					],
+					"path": [
+						"oauth",
+						"access_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/1?access_token=X",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Public",
+						"value": "true",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{user-api}}/users/3?access_token={{token}}",
+					"host": [
+						"{{user-api}}"
+					],
+					"path": [
+						"users",
+						"3"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/oauth/access_token/{{user_id}}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{oauth-api}}/oauth/access_token/{{user_id}}",
+					"host": [
+						"{{oauth-api}}"
+					],
+					"path": [
+						"oauth",
+						"access_token",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/sites?access_token={{token}}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "eb98f851-9316-4c4d-a1b1-cc846e1d939a",
+						"exec": [
+							"var id = pm.response.json().id;",
+							"",
+							"pm.environment.set(\"site_id\", id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"url\":\"http://google.com\",\n\t\"short_name\":\"Krótka nazwa\",\n\t\"description\":\"A długi opis bardzo długo.\",\n\t\"duration_type\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{site-api}}/sites?access_token={{token}}",
+					"host": [
+						"{{site-api}}"
+					],
+					"path": [
+						"sites"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/sites/{{site_id}}?access_token={{token}}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c8d6126a-7650-42fb-b44e-12dd51064a3f",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"url\":\"test.pl\",\n\"status\":500,\n\"short_name\":\"Krótka nazwa\",\n\"description\":\"A długi opis bardzo długo.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{site-api}}/sites/{{site_id}}?access_token={{token}}",
+					"host": [
+						"{{site-api}}"
+					],
+					"path": [
+						"sites",
+						"{{site_id}}"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/sites",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{site-api}}/sites?access_token={{token}}",
+					"host": [
+						"{{site-api}}"
+					],
+					"path": [
+						"sites"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USERS /ping/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{user-api}}/ping",
+					"host": [
+						"{{user-api}}"
+					],
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SITES /ping/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{site-api}}/ping",
+					"host": [
+						"{{site-api}}"
+					],
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OAUTH /ping/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{site-api}}/ping",
+					"host": [
+						"{{site-api}}"
+					],
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
