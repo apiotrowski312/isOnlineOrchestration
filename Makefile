@@ -6,7 +6,7 @@ DIRECTORIES_TO_TEST = users-api.dir sites-api.dir utils-go.dir oauth-api.dir
 PROJ = utils-go
 
 DBS = users-db oauth-cassandra sites-db
-SERVICES = oauth-cassandra oauth sites
+SERVICES = users oauth sites
 
 RED='\033[0;31m'
 NC='\033[0m' # No Color
