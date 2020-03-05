@@ -1,5 +1,17 @@
 # isOnlineOrchestration
 
+This app was build just for learning purposes. 
+
+I utilized three topics I wanted to learn:
+
+- microservices architecture
+- mvc
+- golang
+
+This app allows you to create user, authenticate and authorize user, add site to ping and retrive data from ping site scheduler.
+
+## Repositories
+
 This is main repository of the project.
 
 All available commands can be found under command `make help` or simply `make`
