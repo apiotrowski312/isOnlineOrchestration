@@ -1,6 +1,6 @@
 # isOnlineOrchestration
 
-This app was build just for learning purposes. 
+This app was built just for learning purposes. 
 
 I utilized three topics I wanted to learn:
 
